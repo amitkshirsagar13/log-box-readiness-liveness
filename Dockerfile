@@ -19,4 +19,4 @@ ENV READINESS=5
 ENV LIVENESS=9
 
 EXPOSE 3000
-CMD [ "start.sh" ]
+ENTRYPOINT [ "bash", "start.sh" ]

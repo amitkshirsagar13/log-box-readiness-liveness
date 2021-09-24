@@ -11,3 +11,4 @@ fi
 LIVENESS=$(( $LIVENESS - $READINESS ))
 sleep $LIVENESS
 touch /tmp/health/liveness
+ls -ltr /tmp/health
