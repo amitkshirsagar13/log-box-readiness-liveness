@@ -5,6 +5,10 @@ const app = express()
 const port = 3000
 const health = '/tmp/health'
 
+const logging = false
+const LOGLINE = process.env.LOGLINE || "Something is happening!!! You got to wait!!!"
+const LOGRATE = process.env.LOGRATE || 1000
+
 healthCheck = async (res, endpoint, message) => {
     const path = `${health}/${endpoint}`;
     let check = false;
@@ -36,5 +40,19 @@ app.listen(port, () => {
     console.log(`log-box-readiness-liveness app listening at http://localhost:${port}`)
 })
 
+let sleepTime = 1000;
+let i = 0;
 
+let logBatch = 0;
+
+function logEverySeconds(i) {
+    setTimeout(() => {
+        for (var i = 0; i < LOGRATE; i++) {
+            console.log(LOGLINE, ' [', i, '/', logBatch, ']');
+        }
+        logEverySeconds(++i);
+        logBatch = logBatch + 1;
+    }, sleepTime)
+}
+logEverySeconds(0);
 

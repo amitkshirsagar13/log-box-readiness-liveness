@@ -17,6 +17,8 @@ COPY . .
 
 ENV READINESS=5
 ENV LIVENESS=9
+ENV LOGLINE="Something is happening!!! You got to wait!!!"
+ENV LOGRATE=1000
 
 EXPOSE 3000
 ENTRYPOINT [ "bash", "start.sh" ]
